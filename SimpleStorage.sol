@@ -11,10 +11,12 @@ contract SimpleStorage{
         uint256 favnumber;
         string name ;
     }
+    
     person public pat =person({name:"pat", favnumber:10});
     //dynamic array  if [3] static array
     person[] public listofpeople;
 
+    mapping (string => uint256) public nameToFavNumber;
     function store(uint256 _favnumber) public{
         myfavnumber =_favnumber;
          
@@ -27,7 +29,13 @@ contract SimpleStorage{
     }
 
     function addperson(string memory _name , uint256 _favnumber ) public{
-        person memory newperson = person(_favnumber ,_name);
-        listofpeople.push(newperson);
+        //calldata,memory,storage
+        //memeory and call data base but memory can be modifieed but only array stuct
+        // person memory newperson = person(_favnumber ,_name); 
+       // listofpeople.push(newperson);
+       //or
+       listofpeople.push(person(_favnumber,_name)) ;
+        nameToFavNumber[_name]=_favnumber;
+
     }
 }
