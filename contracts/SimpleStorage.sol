@@ -1,5 +1,5 @@
 //SPDX-License-Identifier:MIT
-pragma solidity 0.8.19; // this is the solidity version
+pragma solidity >0.8.19; // this is the solidity version
 // or >=0.8.18 <0.9.0;
 // guide- https://github.com/Cyfrin/foundry-full-course-cu?tab=readme-ov-file
 contract SimpleStorage{
@@ -15,9 +15,9 @@ contract SimpleStorage{
     person public pat =person({name:"pat", favnumber:10});
     //dynamic array  if [3] static array
     person[] public listofpeople;
-
+//private for decl that fn can be accessed from same contract only
     mapping (string => uint256) public nameToFavNumber;
-    function store(uint256 _favnumber) public{
+    function store(uint256 _favnumber) public virtual{ //add virtual to override 
         myfavnumber =_favnumber;
          
     }
